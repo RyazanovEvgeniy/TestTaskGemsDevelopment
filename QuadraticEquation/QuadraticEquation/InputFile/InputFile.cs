@@ -10,8 +10,8 @@ namespace QuadraticEquation
         {
             TextReader reader;
 
-            if (System.IO.File.Exists(filePath))
-                reader = System.IO.File.OpenText(filePath);
+            if (File.Exists(filePath))
+                reader = File.OpenText(filePath);
             else
                 return null;
 

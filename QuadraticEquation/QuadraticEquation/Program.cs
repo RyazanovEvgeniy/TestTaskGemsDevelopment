@@ -13,20 +13,25 @@ namespace QuadraticEquation
             Calc calc = new Calc();
 
             List<Equation> equations = InputFile.ReadEquationsFromFile("input.txt");
-            Console.WriteLine();
 
-            double[] result;
-
-            foreach (Equation equation in equations)
+            if (equations != null)
             {
-                Console.WriteLine($"Equation: {equation.a}*x^2 + {equation.b}*x + {equation.c} == 0");
-                result = calc.SolveQuadraticEquation(equation.a, equation.b, equation.c);
+                Console.WriteLine("_________________________________________________________________\n");
+                double[] result;
 
-                if (result != null)
-                    Console.WriteLine($"Result: x1 == {result[0]}, x2 == {result[1]}");
-                else
-                    Console.WriteLine("Equation has no solution ");
+                foreach (Equation equation in equations)
+                {
+                    Console.WriteLine($"Equation: {equation.a}*x^2 + {equation.b}*x + {equation.c} == 0");
+                    result = calc.SolveQuadraticEquation(equation.a, equation.b, equation.c);
+
+                    if (result != null)
+                        Console.WriteLine($"Result: x1 == {result[0]}, x2 == {result[1]}");
+                    else
+                        Console.WriteLine("Equation has no solution ");
+                }
             }
+            else
+                Console.WriteLine("File 'input.txt' not found");
 
             Console.ReadKey();
         }
