@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadraticEquation", "QuadraticEquation\QuadraticEquation.csproj", "{ED716793-3FE4-4B3D-A886-8922C2785AF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuadraticEquationTest", "QuadraticEquationTest\QuadraticEquationTest.csproj", "{F0C34B89-9AE7-47D5-9688-3BCE0E1F7A93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuadraticEquationTests", "QuadraticEquationTests\QuadraticEquationTests.csproj", "{F0C34B89-9AE7-47D5-9688-3BCE0E1F7A93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

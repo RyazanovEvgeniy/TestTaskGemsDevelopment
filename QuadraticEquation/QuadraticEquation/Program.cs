@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace QuadraticEquation
 {
@@ -6,11 +7,13 @@ namespace QuadraticEquation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("QuadraticEquation");
+            Console.WriteLine("QuadraticEquation project");
+            Console.WriteLine();
 
             Calc calc = new Calc();
 
-            Equation[] equations = InputFile.ReadEquations("input.txt");
+            List<Equation> equations = InputFile.ReadEquationsFromFile("input.txt");
+            Console.WriteLine();
 
             double[] result;
 

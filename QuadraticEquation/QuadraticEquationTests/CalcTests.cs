@@ -19,7 +19,7 @@ namespace QuadraticEquationTests
             // Act
             Calc calc = new Calc(); ;
             double[] actual = calc.SolveQuadraticEquation(a, b, c);
-
+            
             // Assert
             Assert.Equal(expected, actual);
         }

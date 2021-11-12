@@ -1,55 +1,55 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace QuadraticEquation
 {
-    struct Equation
+    public static class InputFile
     {
-        public double a;
-        public double b;
-        public double c;
-    }
-
-    static class InputFile
-    {
-        public static Equation[] ReadEquations(string filePath)
+        public static List<Equation> ReadEquationsFromFile(string filePath)
         {
             TextReader reader;
 
-            if (File.Exists(filePath))
-                reader = File.OpenText(filePath);
+            if (System.IO.File.Exists(filePath))
+                reader = System.IO.File.OpenText(filePath);
             else
                 return null;
 
-            Equation[] equations = new Equation[File.ReadAllLines(filePath).Length];
-            Console.WriteLine("File.ReadAllLines(filePath).Length == " + File.ReadAllLines(filePath).Length);
+            List<Equation> equations = new List<Equation>();
 
             string line;
-            int counter = 0;
 
             while ((line = reader.ReadLine()) != null)
             {
-                Console.WriteLine("Line#" + counter + " == " + line);
+                Console.WriteLine("Line | " + line);
 
-                string[] numbers = line.Split(' ');
+                Equation equation = LineToEquation(line);
 
-                if (numbers.Length <= 3
-                    && double.TryParse(numbers[0], out double a)
-                    && double.TryParse(numbers[1], out double b)
-                    && double.TryParse(numbers[2], out double c))
-                {
-                    equations[counter].a = a;
-                    equations[counter].b = b;
-                    equations[counter].c = c;
-                }
-                else
-                    Console.WriteLine("Incorrect line format");
-
-                counter++;
+                if (equation != null)
+                    equations.Add(equation);
             }
 
             return equations;
         }
 
+        public static Equation LineToEquation(string line)
+        {
+            Equation equation = new Equation();
+
+            string[] numbers = line.Split(' ');
+
+            if (numbers.Length == 3
+                    && double.TryParse(numbers[0], out double a)
+                    && double.TryParse(numbers[1], out double b)
+                    && double.TryParse(numbers[2], out double c))
+            {
+                equation.a = a;
+                equation.b = b;
+                equation.c = c;
+                return equation;
+            }
+
+            return null;
+        }
     }
 }
