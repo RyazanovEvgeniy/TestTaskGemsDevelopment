@@ -65,5 +65,20 @@ namespace QuadraticEquationTests
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void LineToEquationTest5()
+        {
+            // Arrange
+            string line = "2 3.0 4";
+
+            Equation expected = null;
+
+            // Act
+            Equation actual = InputFile.LineToEquation(line);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
