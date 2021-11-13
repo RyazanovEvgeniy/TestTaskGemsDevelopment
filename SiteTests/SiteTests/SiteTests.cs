@@ -11,62 +11,64 @@ namespace SiteTests
     {
         private IWebDriver driver;
 
+        // Метод начальной настройки теста
         [SetUp]
         public void Setup()
         {
+            // Создаем ChromeDriver, с помощью которого будем тестировать в дальнейшем
             driver = new OpenQA.Selenium.Chrome.ChromeDriver();
+            // Увеличим окно для удобства
             driver.Manage().Window.Maximize();
+            // Переходим на тестируемый сайт "https://gemsdev.ru"
             driver.Navigate().GoToUrl("https://gemsdev.ru");
-            driver.FindElement(By.LinkText("��������")).Click();
+            // Находим ссылку с текстом "Продукты" и переходим по ней
+            driver.FindElement(By.LinkText("Продукты")).Click();
         }
 
+        // Метод поиска раздела "GeoMeta"
         [Test]
         public void FindGeoMeta()
         {
-            driver.FindElement(By.CssSelector("section[text*='GeoMeta']"));
+            // Ищем заголовок в находящийся в каком либо разделе, содержащий текст "GeoMeta"
+            driver.FindElement(By.CssSelector("section h1, h2")).Text.Contains("GeoMeta");
         }
 
+        // Метод поиска раздела "Государственная система обеспечения градостроительной деятельности"
         [Test]
         public void FindGosSystem()
         {
+            // Ищем раздел реализующий класс gos-system
             driver.FindElement(By.CssSelector("section[class*=gos-system]"));
         }
 
+        // Метод поиска ссылки https://исогдрегион.рф в разделе "Государственная система обеспечения градостроительной деятельности"
         [Test]
         public void FindGosSystemLink()
         {
-            var elements = driver.FindElements(By.XPath("//a[text()='GeoMeta']"));
-
-            TestContext.WriteLine("!!!");
-
-            foreach (var element in elements)
-                TestContext.WriteLine("tag " + element.TagName +
-                    " Text " + element.Text +
-                    " href " + element.GetAttribute("href") +
-                    " name " + element.GetAttribute("name") +
-                    " text " + element.GetAttribute("text"));
-            //var elements = driver.FindElements(By.CssSelector("#menu-item-45 > a"));
-            //foreach (var element in elements)
-            //    TestContext.WriteLine(element.TagName + " " +
-            //        element.Text + " " +
-            //        element.GetAttribute("href"));
+            driver.FindElement(By.CssSelector($"section[class*=gos-system] a[href*='https://исогдрегион.рф']"));
         }
 
+        // Метод поиска раздела “Городская аналитика”
         [Test]
         public void FindUrbanAnalytics()
         {
+            // Ищем раздел реализующий класс urban-analytics
             driver.FindElement(By.CssSelector("section[class*=urban-analytics]"));
         }
 
+        // Метод поиска раздела “Другие наши продукты”
         [Test]
         public void FindOtherProducts()
         {
+            // Ищем раздел реализующий класс other-products
             driver.FindElement(By.CssSelector("section[class*=other-products]"));
         }
 
+        // Метод завершение теста
         [TearDown]
         public void TearDown()
         {
+            // Закрываем ChromeDriver
             driver.Close();
         }
     }
