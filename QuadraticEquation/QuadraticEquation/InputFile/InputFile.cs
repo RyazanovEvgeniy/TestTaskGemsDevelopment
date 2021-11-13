@@ -6,16 +6,15 @@ namespace QuadraticEquation
 {
     public static class InputFile
     {
-        public static List<Equation> ReadEquationsFromFile(string filePath)
+        public static bool ReadEquationsFromFile(string filePath, out List<Equation> equations)
         {
+            equations = new List<Equation>();
             TextReader reader;
 
             if (File.Exists(filePath))
                 reader = File.OpenText(filePath);
             else
-                return null;
-
-            List<Equation> equations = new List<Equation>();
+                return false;
 
             string line;
 
@@ -23,18 +22,16 @@ namespace QuadraticEquation
             {
                 Console.WriteLine("Line | " + line);
 
-                Equation equation = LineToEquation(line);
-
-                if (equation != null)
+                if (LineToEquation(line, out Equation equation))
                     equations.Add(equation);
             }
 
-            return equations;
+            return true;
         }
 
-        public static Equation LineToEquation(string line)
+        public static bool LineToEquation(string line, out Equation equation)
         {
-            Equation equation = new Equation();
+            equation = new Equation(0.0, 0.0, 0.0);
 
             string[] numbers = line.Split(' ');
 
@@ -46,10 +43,10 @@ namespace QuadraticEquation
                 equation.a = a;
                 equation.b = b;
                 equation.c = c;
-                return equation;
+                return true;
             }
 
-            return null;
+            return false;
         }
     }
 }

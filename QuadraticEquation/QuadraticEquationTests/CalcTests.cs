@@ -14,14 +14,16 @@ namespace QuadraticEquationTests
             double b = 0.0;
             double c = 1.0;
 
-            double[] expected = null;
+            double[] expectedResult = { 0.0, 0.0 };
+            bool expectedBool = false;
 
             // Act
             Calc calc = new Calc(); ;
-            double[] actual = calc.SolveQuadraticEquation(a, b, c);
+            bool actualBool = calc.SolveQuadraticEquation(a, b, c, out double[] actualResult);
             
             // Assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(expectedBool, actualBool);
         }
 
         [Fact]
@@ -32,14 +34,16 @@ namespace QuadraticEquationTests
             double b = 2.0;
             double c = 1.0;
 
-            double[] expected = { -1, -1 };
+            double[] expectedResult = { -1.0, -1.0 };
+            bool expectedBool = true;
 
             // Act
             Calc calc = new Calc(); ;
-            double[] actual = calc.SolveQuadraticEquation(a, b, c);
+            bool actualBool = calc.SolveQuadraticEquation(a, b, c, out double[] actualResult);
 
             // Assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(expectedBool, actualBool);
         }
 
         [Fact]
@@ -47,17 +51,19 @@ namespace QuadraticEquationTests
         {
             // Arrange
             double a = 1.0;
-            double b = 5.0;
-            double c = 4.0;
+            double b = 4.0;
+            double c = 3.0;
 
-            double[] expected = { -1.0, -4.0 };
+            double[] expectedResult = { -1.0, -3.0 };
+            bool expectedBool = true;
 
             // Act
             Calc calc = new Calc(); ;
-            double[] actual = calc.SolveQuadraticEquation(a, b, c);
+            bool actualBool = calc.SolveQuadraticEquation(a, b, c, out double[] actualResult);
 
             // Assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(expectedBool, actualBool);
         }
     }
 }

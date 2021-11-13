@@ -11,21 +11,20 @@ namespace QuadraticEquation
 
         // Метод решения квадратного уровнения
         // Возвращающий массив ответов
-        public double[] SolveQuadraticEquation(double a, double b, double c)
+        public bool SolveQuadraticEquation(double a, double b, double c, out double[] result)
         {
+            result = new double[2];
+
             double D = Math.Pow(b, 2) - 4 * a * c;
 
-            if (D < 0)
-                return null;
-            else
+            if (D >= 0)
             {
-                double[] result = new double[2];
-
                 result[0] = (-b + Math.Sqrt(D)) / (2 * a);
                 result[1] = (-b - Math.Sqrt(D)) / (2 * a);
-
-                return result;
+                return true;
             }
+            else
+                return false;
         }
 
     }
