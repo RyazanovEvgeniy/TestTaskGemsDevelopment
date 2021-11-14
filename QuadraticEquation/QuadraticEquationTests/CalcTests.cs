@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using QuadraticEquation;
+using System.Collections.Generic;
 
 namespace QuadraticEquationTests
 {
@@ -14,12 +15,11 @@ namespace QuadraticEquationTests
             double b = 0.0;
             double c = 1.0;
 
-            double[] expectedResult = { 0.0, 0.0 };
+            List<double> expectedResult = new List<double>();
             bool expectedBool = false;
 
             // Act
-            Calc calc = new Calc(); ;
-            bool actualBool = calc.SolveQuadraticEquation(a, b, c, out double[] actualResult);
+            bool actualBool = Calc.SolveQuadraticEquation(a, b, c, out List<double> actualResult);
             
             // Assert
             Assert.Equal(expectedResult, actualResult);
@@ -34,12 +34,11 @@ namespace QuadraticEquationTests
             double b = 2.0;
             double c = 1.0;
 
-            double[] expectedResult = { -1.0, -1.0 };
+            List<double> expectedResult = new List<double>{ -1.0 };
             bool expectedBool = true;
 
             // Act
-            Calc calc = new Calc(); ;
-            bool actualBool = calc.SolveQuadraticEquation(a, b, c, out double[] actualResult);
+            bool actualBool = Calc.SolveQuadraticEquation(a, b, c, out List<double> actualResult);
 
             // Assert
             Assert.Equal(expectedResult, actualResult);
@@ -54,12 +53,11 @@ namespace QuadraticEquationTests
             double b = 4.0;
             double c = 3.0;
 
-            double[] expectedResult = { -1.0, -3.0 };
+            List<double> expectedResult = new List<double>{ -1.0, -3.0 };
             bool expectedBool = true;
 
             // Act
-            Calc calc = new Calc(); ;
-            bool actualBool = calc.SolveQuadraticEquation(a, b, c, out double[] actualResult);
+            bool actualBool = Calc.SolveQuadraticEquation(a, b, c, out List<double> actualResult);
 
             // Assert
             Assert.Equal(expectedResult, actualResult);

@@ -4,49 +4,70 @@ using System.Collections.Generic;
 
 namespace QuadraticEquation
 {
+    // Статический класс для работы с входящим файлом
     public static class InputFile
     {
+        // Статический метод
         public static bool ReadEquationsFromFile(string filePath, out List<Equation> equations)
         {
+            // Создаем лист уравнений
             equations = new List<Equation>();
+            // И текстовый обозреватель, с помощью которого будем читать файл
             TextReader reader;
 
+            // Проверяем существования файла
             if (File.Exists(filePath))
+                // Если он есть, открываем
                 reader = File.OpenText(filePath);
+            // Иначе возвращаем ноль == файла нет
             else
                 return false;
 
+            // Объявляем строку
             string line;
 
+            // Читаем построчно файл
+            // Пока reader.ReadLine() не вернет null
             while ((line = reader.ReadLine()) != null)
             {
                 Console.WriteLine("Line | " + line);
 
-                if (LineToEquation(line, out Equation equation))
+                // Пробуем преобразовать строку в уравнение
+                if (ConvertLineToEquation(line, out Equation equation))
+                    // Если получилось добавляем уравнение в список
                     equations.Add(equation);
             }
 
+            // Возвращаем единицу, так как чтение прошло успешно
             return true;
         }
 
-        public static bool LineToEquation(string line, out Equation equation)
+        // Метод преобразования строки в уравнение
+        public static bool ConvertLineToEquation(string line, out Equation equation)
         {
-            equation = new Equation(0.0, 0.0, 0.0);
+            // Создаем новое уравнение
+            equation = new Equation();
 
+            // Разделяем строку, с помощью символа пробела, на подстроки
             string[] numbers = line.Split(' ');
 
+            // Ожидаемый формат полученной строки == "0,3 2,3 4,0"
+            // Кол-во полученных строк = 3 и получилось расшифровать каждый double
             if (numbers.Length == 3
                     && double.TryParse(numbers[0], out double a)
                     && double.TryParse(numbers[1], out double b)
                     && double.TryParse(numbers[2], out double c))
             {
+                // Заполняем уравнение
                 equation.a = a;
                 equation.b = b;
                 equation.c = c;
+                // Возвращаем единицу, так как все прошло успешно
                 return true;
             }
-
-            return false;
+            // Иначе возвращаем ноль
+            else
+                return false;
         }
     }
 }
