@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,7 +19,7 @@ namespace SiteTests
         public void Setup()
         {
             // Создаем ChromeDriver, с помощью которого будем тестировать в дальнейшем
-            driver = new OpenQA.Selenium.Chrome.ChromeDriver();
+            driver = new ChromeDriver();
             // Увеличим окно для удобства
             driver.Manage().Window.Maximize();
             // Переходим на тестируемый сайт "https://gemsdev.ru"
@@ -29,7 +32,7 @@ namespace SiteTests
         [Test]
         public void FindGeoMeta()
         {
-            // Ищем заголовок в находящийся в каком либо разделе, содержащий текст "GeoMeta"
+            // Ищем заголовок, находящийся в каком либо разделе, содержащий текст "GeoMeta"
             driver.FindElement(By.CssSelector("section h1, h2")).Text.Contains("GeoMeta");
         }
 
