@@ -2,16 +2,16 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace QuadraticEquation
+namespace Test
 {
     // Статический класс для работы с входящим файлом
     public static class InputFile
     {
-        // Статический метод
-        public static bool ReadEquationsFromFile(string filePath, out List<Equation> equations)
+        // Статический метод чтения уравнений из файла
+        public static bool ReadEquationsFromFile(string filePath, out List<QuadraticEquation> equations)
         {
             // Создаем лист уравнений
-            equations = new List<Equation>();
+            equations = new List<QuadraticEquation>();
             // И текстовый обозреватель, с помощью которого будем читать файл
             TextReader reader;
 
@@ -33,7 +33,7 @@ namespace QuadraticEquation
                 Console.WriteLine("Line | " + line);
 
                 // Пробуем преобразовать строку в уравнение
-                if (ConvertLineToEquation(line, out Equation equation))
+                if (ConvertLineToEquation(line, out QuadraticEquation equation))
                     // Если получилось добавляем уравнение в список
                     equations.Add(equation);
             }
@@ -43,10 +43,10 @@ namespace QuadraticEquation
         }
 
         // Метод преобразования строки в уравнение
-        public static bool ConvertLineToEquation(string line, out Equation equation)
+        public static bool ConvertLineToEquation(string line, out QuadraticEquation equation)
         {
             // Создаем новое уравнение
-            equation = new Equation();
+            equation = new QuadraticEquation();
 
             // Разделяем строку, с помощью символа пробела, на подстроки
             string[] numbers = line.Split(' ');

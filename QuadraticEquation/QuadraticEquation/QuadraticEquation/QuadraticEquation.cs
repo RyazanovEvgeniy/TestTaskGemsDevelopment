@@ -1,21 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace QuadraticEquation
+namespace Test
 {
-    // Статический класс Calc с методами решения математических задач проекта
-    public static class Calc
+    // Класс Квадратного уравнения
+    public struct QuadraticEquation
     {
-        // Статический метод решения квадратного уровнения
-        // Возвращающий массив ответов
-        public static bool SolveQuadraticEquation(double a, double b, double c, out List<double> result)
+        // Свойства уравнения формата: a*x^2 + b*x + c = 0
+        public double a { get; set; }
+        public double b { get; set; }
+        public double c { get; set; }
+
+        // Конструктор с задачей всех параметров
+        public QuadraticEquation(double a, double b, double c) 
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        public bool Solve(out List<double> result)
         {
             // Объявляем лист куда будем записывать результат
             result = new List<double>();
 
             // Ищем дискременант уравнения
             double D = Math.Pow(b, 2) - 4 * a * c;
-            
+
             // Если он не отрицательный
             if (D >= 0.0)
             {
@@ -36,6 +47,5 @@ namespace QuadraticEquation
             else
                 return false;
         }
-
     }
 }

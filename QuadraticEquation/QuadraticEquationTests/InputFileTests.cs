@@ -1,6 +1,6 @@
 ﻿using System;
 using Xunit;
-using QuadraticEquation;
+using Test;
 
 namespace QuadraticEquationTests
 {
@@ -11,11 +11,11 @@ namespace QuadraticEquationTests
         {
             // Arrange
             string line = "2 3 4";
-            Equation expectedEquation = new Equation(2.0, 3.0, 4.0);
+            QuadraticEquation expectedEquation = new QuadraticEquation(2.0, 3.0, 4.0);
             bool expectedBool = true;
 
             // Act
-            bool actualBool = InputFile.ConvertLineToEquation(line, out Equation actualEquation);
+            bool actualBool = InputFile.ConvertLineToEquation(line, out QuadraticEquation actualEquation);
 
             // Assert
             Assert.Equal(expectedEquation, actualEquation);
@@ -27,11 +27,11 @@ namespace QuadraticEquationTests
         {
             // Arrange
             string line = "2 4";
-            Equation expectedEquation = new Equation();
+            QuadraticEquation expectedEquation = new QuadraticEquation();
             bool expectedBool = false;
 
             // Act
-            bool actualBool = InputFile.ConvertLineToEquation(line, out Equation actualEquation);
+            bool actualBool = InputFile.ConvertLineToEquation(line, out QuadraticEquation actualEquation);
 
             // Assert
             Assert.Equal(expectedEquation, actualEquation);
@@ -43,11 +43,11 @@ namespace QuadraticEquationTests
         {
             // Arrange
             string line = "2 4 5 47";
-            Equation expectedEquation = new Equation();
+            QuadraticEquation expectedEquation = new QuadraticEquation();
             bool expectedBool = false;
 
             // Act
-            bool actualBool = InputFile.ConvertLineToEquation(line, out Equation actualEquation);
+            bool actualBool = InputFile.ConvertLineToEquation(line, out QuadraticEquation actualEquation);
 
             // Assert
             Assert.Equal(expectedEquation, actualEquation);
@@ -59,11 +59,11 @@ namespace QuadraticEquationTests
         {
             // Arrange
             string line = "2,0 4 5,3";
-            Equation expectedEquation = new Equation(2.0, 4.0, 5.3);
+            QuadraticEquation expectedEquation = new QuadraticEquation(2.0, 4.0, 5.3);
             bool expectedBool = true;
 
             // Act
-            bool actualBool = InputFile.ConvertLineToEquation(line, out Equation actualEquation);
+            bool actualBool = InputFile.ConvertLineToEquation(line, out QuadraticEquation actualEquation);
 
             // Assert
             Assert.Equal(expectedEquation, actualEquation);
@@ -75,11 +75,11 @@ namespace QuadraticEquationTests
         {
             // Arrange
             string line = "";
-            Equation expectedEquation = new Equation();
+            QuadraticEquation expectedEquation = new QuadraticEquation();
             bool expectedBool = false;
 
             // Act
-            bool actualBool = InputFile.ConvertLineToEquation(line, out Equation actualEquation);
+            bool actualBool = InputFile.ConvertLineToEquation(line, out QuadraticEquation actualEquation);
 
             // Assert
             Assert.Equal(expectedEquation, actualEquation);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace QuadraticEquation
+namespace Test
 {
     class Program
     {
@@ -14,17 +14,17 @@ namespace QuadraticEquation
             string inputFile = "input.txt";
 
             // Вызываем метод пытающийся прочитать лист уравнений из файла
-            if (InputFile.ReadEquationsFromFile(inputFile, out List<Equation> equations))
+            if (InputFile.ReadEquationsFromFile(inputFile, out List<QuadraticEquation> equations))
             {
                 Console.WriteLine("_________________________________________________________________\n");
 
                 // Каждое уравнение в листе
-                foreach (Equation equation in equations)
+                foreach (QuadraticEquation equation in equations)
                 {
                     Console.WriteLine($"Equation: {equation.a}*x^2 + {equation.b}*x + {equation.c} == 0");
                     
                     // Пытаемся решить
-                    if (Calc.SolveQuadraticEquation(equation.a, equation.b, equation.c, out List<double> result))
+                    if (equation.Solve(out List<double> result))
                     {
                         // Если получилось выводим ответы
                         Console.WriteLine("Result:");
