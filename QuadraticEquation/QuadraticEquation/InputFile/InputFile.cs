@@ -15,7 +15,7 @@ namespace Test
             // И текстовый обозреватель, с помощью которого будем читать файл
             TextReader reader;
 
-            // Проверяем существования файла
+            // Проверяем существование файла
             if (File.Exists(filePath))
                 // Если он есть, открываем
                 reader = File.OpenText(filePath);
